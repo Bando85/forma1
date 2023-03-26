@@ -3,6 +3,8 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 import {Button, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 import AppNavbar from './AppNavbar';
 import './TeamEdit.css';
+import { useCookies } from 'react-cookie';
+
 
 const TeamEdit = () => {
     const initialFormState = {
@@ -11,6 +13,7 @@ const TeamEdit = () => {
         worldChampionshipsWon: '',
         entryFeePaid: false
     };
+    const [cookies] = useCookies(['XSRF-TOKEN']);
     const [team, setTeam] = useState(initialFormState);
     const navigate = useNavigate();
     const {id} = useParams();
@@ -41,10 +44,12 @@ const TeamEdit = () => {
         await fetch(`/api/formulaoneteam${team.id ? `/${team.id}` : ''}`, {
             method: (team.id) ? 'PUT' : 'POST',
             headers: {
+                'X-XSRF-TOKEN': cookies['XSRF-TOKEN'],
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(team)
+            body: JSON.stringify(team),
+            credentials: 'include'
         });
         setTeam(initialFormState);
         navigate('/teams');

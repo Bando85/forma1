@@ -31,6 +31,9 @@ public class DevNoSecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/api/**").permitAll()
                         .anyRequest().authenticated()
                 )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll())
                 .addFilterAfter(new SpaWebFilter(), BasicAuthenticationFilter.class);
     return http.build();
     }

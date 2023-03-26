@@ -4,40 +4,50 @@
 
 import React, {useState} from 'react';
 import './login.css';
+import { useCookies } from 'react-cookie';
+
 
 const Login = () => {
 
+    const [cookies] = useCookies(['XSRF-TOKEN']);
+
+    console.log(cookies);
+
     return (
-            <div className="wrapper">
-                <div className="container main">
-                    <div className="row">
-                        <div className="col-md-6 side-image">
-                            <div className="text">
-                                <p>Formula One Teams</p>
-                            </div>
+        <div className="wrapper">
+            <div className="container main">
+                <div className="row">
+                    <div className="col-md-6 side-image">
+                        <div className="text">
+                            <p>Formula One Teams</p>
                         </div>
-                        <div className="col-md-6 right">
-                            <div className="input-box">
-                                <header>Please sign in</header>
+                    </div>
+                    <div className="col-md-6 right">
+                        <div className="input-box">
+                            <header>Please sign in</header>
+                            <form action="/login" method="post">
                                 <div className="input-field">
-                                    <input type="text" className="input" id="email" required autoComplete="off"/>
-                                    <label htmlFor="email">Email</label>
+                                    <input type="text" className="input" id="username" name="username" required autoComplete="off"/>
+                                    <label htmlFor="username">Username</label>
                                 </div>
                                 <div className="input-field">
-                                    <input type="password" className="input" id="password" required/>
+                                    <input type="password" className="input" id="password" name="password" required/>
                                     <label htmlFor="password">Password</label>
                                 </div>
                                 <div className="input-field">
                                     <input type="submit" className="submit" value="Sign in"/>
                                 </div>
-                                <div className="signin">
-                                    <span>Don't have an account? <a href="/teams">Sign in as guest</a></span>
-                                </div>
+                                <input type="hidden" name="_csrf" value={cookies['XSRF-TOKEN']}/>
+
+                            </form>
+                            <div className="signin">
+                                <span>Don't have an account? <a href="/teams">Sign in as guest</a></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     );
 };
 

@@ -2,20 +2,39 @@
  * Copyright (c) 2023. Created by Andras Laczo.
  */
 
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
-const AppNavbar = () => {
 
+const AppNavbar = props => {
+
+    const [cookies] = useCookies(['XSRF-TOKEN']);
     const [isOpen, setIsOpen] = useState(false);
+
+    const logout = () => {
+        console.log("before fetch")
+        fetch('/logout', {
+            method: 'POST', credentials: 'include',
+            headers: { 'X-XSRF-TOKEN': cookies['XSRF-TOKEN'] }
+        });
+        console.log("after fetch")
+
+        window.location.href = window.location.origin
+
+    }
 
     return (
         <Navbar color="dark" dark expand="md">
-            <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
+            <NavbarBrand tag={Link} to="/teams">Home</NavbarBrand>
             <NavbarToggler onClick={() => { setIsOpen(!isOpen) }}/>
             <Collapse isOpen={isOpen} navbar>
-                <Nav className="justify-content-end" style={{width: "100%"}} navbar>
+                <Nav className="justify-content-between" style={{width: "100%"}} navbar>
+                    <NavItem>
+                        {props.authenticated ? <NavLink href="/" onClick={logout}>Logout</NavLink> :
+                            <NavLink href="/login">Login</NavLink>}
+                    </NavItem>
                     <NavItem>
                         <NavLink href="https://github.com/Bando85">GitHub</NavLink>
                     </NavItem>
@@ -24,5 +43,7 @@ const AppNavbar = () => {
         </Navbar>
     );
 };
+
+
 
 export default AppNavbar;
