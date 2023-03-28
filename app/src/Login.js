@@ -11,10 +11,12 @@ const Login = () => {
 
     const [cookies] = useCookies(['XSRF-TOKEN']);
 
-    console.log(cookies);
+    const error = window.location.search.includes("error");
+
+    console.log(error + " in loginjs")
 
     return (
-        <div className="wrapper">
+        <div className="login-wrapper">
             <div className="container main">
                 <div className="row">
                     <div className="col-md-6 side-image">
@@ -25,6 +27,7 @@ const Login = () => {
                     <div className="col-md-6 right">
                         <div className="input-box">
                             <header>Please sign in</header>
+                            {error ? <div className="login-error-message">Wrong username or password!</div>:<div><br/></div>}
                             <form action="/login" method="post">
                                 <div className="input-field">
                                     <input type="text" className="input" id="username" name="username" required autoComplete="off"/>

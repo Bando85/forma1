@@ -39,7 +39,7 @@ tasks.named('test') {
 
 task ('copyApp', type: Copy) {
     from('app/build')
-    into('build/resources/main/static')
+    into('build/resources/main/public')
 }
 
 processResources.dependsOn('copyApp')

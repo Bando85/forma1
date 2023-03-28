@@ -53,6 +53,24 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
                 .worldChampionshipsWon(1)
                 .entryFeePaid(false)
                 .build());
+        list.add(FormulaOneTeam.builder()
+                .name("Ferrari")
+                .foundationYear(1970)
+                .worldChampionshipsWon(1)
+                .entryFeePaid(true)
+                .build());
+        list.add(FormulaOneTeam.builder()
+                .name("Alfa Romeo")
+                .foundationYear(1940)
+                .worldChampionshipsWon(1)
+                .entryFeePaid(false)
+                .build());
+        list.add(FormulaOneTeam.builder()
+                .name("Williams")
+                .foundationYear(1940)
+                .worldChampionshipsWon(1)
+                .entryFeePaid(false)
+                .build());
 
         formulaOneTeamRepository.saveAll(list);
 

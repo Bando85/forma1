@@ -2,16 +2,18 @@
  * Copyright (c) 2023. Created by Andras Laczo.
  */
 
-import React, { useEffect, useState } from 'react';
-import { Button, ButtonGroup, Container, Table } from 'reactstrap';
+import React, {useEffect, useState} from 'react';
+import {Button, ButtonGroup, CardFooter, Container, Table} from 'reactstrap';
 import AppNavbar from './AppNavbar';
-import { Link } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+import {Link} from 'react-router-dom';
+import {useCookies} from 'react-cookie';
+import {Player} from "@lottiefiles/react-lottie-player";
+import "./TeamList.css"
+import AppFooter from "./AppFooter";
 
-const TeamList = () => {
+const TeamList = (props) => {
 
     const [cookies] = useCookies(['XSRF-TOKEN']);
-    const [authenticated, setAuthenticated] = useState(false);
     const [teams, setTeams] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -25,23 +27,6 @@ const TeamList = () => {
                 setLoading(false);
             })
     }, [setTeams, setLoading]);
-
-
-    useEffect(() => {
-        setLoading(true);
-        fetch('api/user')
-            .then(response => response.text())
-            .then(body => {
-                console.log(body)
-                if (body === 'authenticated') {
-                    setAuthenticated(true);
-                } else {
-                    setAuthenticated(false);
-                }
-                setLoading(false);
-            })
-    },[setAuthenticated, setLoading]);
-
 
     const remove = async (id) => {
         await fetch(`/api/formulaoneteam/${id}`, {
@@ -77,35 +62,55 @@ const TeamList = () => {
             <td>{team.foundationYear}</td>
             <td>{team.worldChampionshipsWon}</td>
             <td>{team.entryFeePaid && 'X'}</td>
-            {authenticated ? teamListSecuredButtons(team) : ""}
+            {props.authenticated ? teamListSecuredButtons(team) : ""}
         </tr>
     });
 
-
     return (
-        <div>
-            <AppNavbar authenticated={authenticated}/>
-            <Container fluid>
-                <div className="float-end">
-                    {authenticated ? <Button color="primary" tag={Link} to="/teams/new">Add Team</Button> : ''}
-                </div>
-                <h3>Formula One Teams</h3>
-                <Table className="mt-4">
-                    <thead>
-                    <tr>
-                        <th width="30%">Name</th>
-                        <th width="10%">Founded in</th>
-                        <th width="10%">World Champion <br/> (x times)</th>
-                        <th width="10%">Entry-fee paid</th>
-                        {authenticated ? <th width="10%">Actions</th> :"" }
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {teamList}
-                    </tbody>
-                </Table>
-            </Container>
+        <div className="team-wrapper">
+            <div className="team-content">
+
+
+                <AppNavbar authenticated={props.authenticated}/>
+                <Container fluid>
+                    <Player className="lottie-flag-player"
+                            autoplay
+                            speed={0.6}
+                            keepLastFrame={true}
+                            src="https://assets4.lottiefiles.com/packages/lf20_lfuo4vnm.json"
+                            style={{height: '100px', width: '100px'}}
+                    >
+                    </Player>
+
+                    <Table>
+                        <thead>
+                        <tr>
+                            <th width="30%">Name</th>
+                            <th width="20%">Founded in</th>
+                            <th width="10%">
+                                <Player className="lottie-champ-player"
+                                    autoplay
+                                    speed={1}
+                                    keepLastFrame={true}
+                                    src="https://assets6.lottiefiles.com/packages/lf20_qsykmyhi.json"
+                                    style={{height: '50px', width: '50px'}}
+                                >
+                                </Player>
+                            </th>
+                            <th width="20%">Entry-fee paid</th>
+                            {props.authenticated ? <th width="20%">Actions</th> : ""}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {teamList}
+                        </tbody>
+                    </Table>
+                </Container>
+
+            </div>
+            <AppFooter/>
         </div>
+
     );
 };
 

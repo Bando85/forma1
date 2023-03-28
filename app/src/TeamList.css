@@ -1,0 +1,67 @@
+/*
+ * Copyright (c) 2023. Created by Andras Laczo.
+ */
+
+.team-wrapper {
+    min-height: 100vh;
+    display: flex;
+    display: flex;
+    flex-direction: column;
+}
+.team-content {
+    flex: 1 0 auto;
+}
+
+tr:nth-child(even) {
+    background-color: #f3fafa;
+}
+
+table{
+    border-top: 2px solid #5d5076;
+}
+
+tr{
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    td {
+        vertical-align: middle;
+    }
+
+    .btn-group{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn-group .btn-secondary{
+        width: 60px;
+        border-radius: 10px 10px 0px 0px!important;
+    }
+
+    .btn-group .btn-danger{
+        width: 60px;
+        border-radius: 0px 0px 10px 10px!important;
+        left: 1px;
+    }
+
+    .btn-group a {
+        font-size: 0.8rem!important;
+    }
+
+    .btn-group button {
+        font-size: 0.8rem!important;
+    }
+
+    .lottie-champ-player {
+        height: 30px!important;
+        width: 30px!important;
+    }
+
+
+}

@@ -35,7 +35,7 @@ public class FormulaOneTeamController {
     }
 
     @GetMapping("/formulaoneteam/{id}")
-    ResponseEntity<?> getTeam(@PathVariable Integer id) {
+    ResponseEntity<?> getTeam(@PathVariable Long id) {
         Optional<FormulaOneTeam> team = repository.findById(id);
         return team.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -57,7 +57,7 @@ public class FormulaOneTeamController {
     }
 
     @DeleteMapping("/formulaoneteam/{id}")
-    public ResponseEntity<?> deleteGroup(@PathVariable Integer id) {
+    public ResponseEntity<?> deleteGroup(@PathVariable Long id) {
         log.info("Request to delete: {}", id);
         repository.deleteById(id);
         return ResponseEntity.ok().build();
