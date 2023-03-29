@@ -25,7 +25,7 @@ Then build the frontend with the following command:
 
 `npm run build`
  
-After that please use Gradle with the following commands depending on your system in the [root directory](/) to build the project and package it to a jar:
+After that please use Gradle with the following commands depending on your system in the [root directory](/../../) to build the project and package it to a jar:
 
 `bash gradlew build`
 
@@ -35,7 +35,7 @@ The application is running on port 8080 by default. You can modify the port numb
 
 ## How to run the application
 
-You can run the application with the following command from the [root directory](/):
+You can run the application with the following command from the [root directory](/../../):
 
 `java -jar build/libs/forma1-0.0.1-SNAPSHOT.jar`
 
