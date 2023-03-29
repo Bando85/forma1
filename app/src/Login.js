@@ -6,14 +6,10 @@ import React, {useState} from 'react';
 import './login.css';
 import { useCookies } from 'react-cookie';
 
-
 const Login = () => {
 
     const [cookies] = useCookies(['XSRF-TOKEN']);
-
     const error = window.location.search.includes("error");
-
-    console.log(error + " in loginjs")
 
     return (
         <div className="login-wrapper">

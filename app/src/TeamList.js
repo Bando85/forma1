@@ -69,8 +69,6 @@ const TeamList = (props) => {
     return (
         <div className="team-wrapper">
             <div className="team-content">
-
-
                 <AppNavbar authenticated={props.authenticated}/>
                 <Container fluid>
                     <Player className="lottie-flag-player"
@@ -81,7 +79,6 @@ const TeamList = (props) => {
                             style={{height: '100px', width: '100px'}}
                     >
                     </Player>
-
                     <Table>
                         <thead>
                         <tr>
@@ -106,11 +103,9 @@ const TeamList = (props) => {
                         </tbody>
                     </Table>
                 </Container>
-
             </div>
             <AppFooter/>
         </div>
-
     );
 };
 

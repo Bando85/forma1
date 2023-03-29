@@ -8,7 +8,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-
 @Entity
 @Builder
 @Getter
@@ -30,6 +29,4 @@ public class FormulaOneTeam {
     Integer worldChampionshipsWon;
 
     boolean entryFeePaid;
-
-
 }

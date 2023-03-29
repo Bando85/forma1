@@ -15,7 +15,7 @@ The application is already deployed and running on an AWS Lightsail instance.
 
 This GitHub repository has both the backend and frontend build pre-built. 
 
-The application requires Java 19, that is available [here](https://www.oracle.com/java/technologies/javase/jdk19-archive-downloads.html "Oracle JDK 17 website").
+The application requires Java 19, you can download it from [here](https://www.oracle.com/java/technologies/javase/jdk19-archive-downloads.html "Oracle JDK 17 website").
 
 The application is running on port 8080 by default. You can modify the port number in [application.properties](src/main/resources/application.properties) by adding server.port to it (e.g. server.port=80).
 

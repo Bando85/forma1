@@ -21,7 +21,6 @@ public class SpaWebFilter extends OncePerRequestFilter {
             request.getRequestDispatcher("/").forward(request, response);
             return;
         }
-
         filterChain.doFilter(request, response);
     }
 }

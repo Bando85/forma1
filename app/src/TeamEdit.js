@@ -8,6 +8,7 @@ import {useCookies} from 'react-cookie';
 
 
 const TeamEdit = (props) => {
+
     const initialFormState = {
         name: '',
         foundationYear: '',
@@ -18,7 +19,6 @@ const TeamEdit = (props) => {
     const [team, setTeam] = useState(initialFormState);
     const navigate = useNavigate();
     const {id} = useParams();
-
     const errorMessageName = "Please use 1-20 characters and only letters"
     const errorMessagPositiveNumber = "Must be a positiv integer"
 
@@ -29,7 +29,6 @@ const TeamEdit = (props) => {
                 .then(data => setTeam(data));
         }
     }, [id, setTeam]);
-
 
     const handleChange = (event) => {
         let {name, value} = event.target

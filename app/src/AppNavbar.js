@@ -42,9 +42,7 @@ const AppNavbar = (props) => {
                 </Nav>
             </Collapse>
         </Navbar>
-
     );
 };
-
 
 export default AppNavbar;

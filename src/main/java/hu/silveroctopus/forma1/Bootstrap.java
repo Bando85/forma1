@@ -11,7 +11,6 @@ import hu.silveroctopus.forma1.repository.UserRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 
 @Component
@@ -29,7 +28,6 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent event) {
         loadData();
     }
-
 
     private void loadData(){
 
@@ -81,7 +79,5 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
                 .build();
 
         userRepository.save(admin);
-
-
     }
 }

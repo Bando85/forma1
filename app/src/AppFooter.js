@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2023. Created by Andras Laczo.
  */
+
 import "./AppFooter.css"
 
 const AppFooter = () => {

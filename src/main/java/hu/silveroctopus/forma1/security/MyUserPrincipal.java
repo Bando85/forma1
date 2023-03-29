@@ -19,7 +19,6 @@ public record MyUserPrincipal(User user) implements UserDetails {
         List<SimpleGrantedAuthority> list = new ArrayList<>();
         list.add(new SimpleGrantedAuthority(user.getAuthority()));
         return list;
-
     }
 
     @Override
@@ -54,14 +53,14 @@ public record MyUserPrincipal(User user) implements UserDetails {
 
     @Override
     public boolean equals(Object obj) {
+
         if (this == obj)
             return true;
         if (obj == null)
             return false;
-        if (obj instanceof MyUserPrincipal) {
-            return user.getUserName().equals(((MyUserPrincipal) obj).getUsername());
+        if (obj instanceof MyUserPrincipal myUserPrincipal) {
+            return user.getUserName().equals(myUserPrincipal.getUsername());
         }
         return false;
     }
-
 }

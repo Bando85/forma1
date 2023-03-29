@@ -21,7 +21,6 @@ const App = () => {
             })
     }, [setAuthenticated]);
 
-
     return (
         <Router>
             <Routes>

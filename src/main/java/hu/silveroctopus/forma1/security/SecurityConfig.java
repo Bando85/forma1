@@ -7,6 +7,7 @@ package hu.silveroctopus.forma1.security;
 import hu.silveroctopus.forma1.services.MyUserDetailsService;
 import hu.silveroctopus.forma1.web.CookieCsrfFilter;
 import hu.silveroctopus.forma1.web.SpaWebFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,10 +27,10 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 @Profile("default")
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SecurityConfig {
 
-    @Autowired
-    private MyUserDetailsService myUserDetailsService;
+    private final MyUserDetailsService myUserDetailsService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -75,6 +76,4 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 }
